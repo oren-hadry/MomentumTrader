@@ -1,43 +1,81 @@
-## Momentum Trader
+## MomentumTrader
 
-This repository contains a **sample / demonstration project** designed to showcase the design and implementation of a conservative algorithmic trading system.
-
-The system was run on the **OKX exchange**, trading **a single asset (BTC-USDT)** using a **risk-constrained, conservative strategy**. The primary goal of the project was **risk reduction and stability**, rather than maximizing directional exposure or outperforming the underlying market.
-
-Specifically:
-
-* The strategy trades a single market.
-* Position sizing and execution are deliberately conservative.
-* Trading activity is throttled during periods of extreme momentum.
-* The objective is to achieve **consistent, steady profitability with lower variance**, rather than market beta capture.
-
-The results illustrate that the cumulative profit curve exhibits **significantly lower volatility than the underlying BTC price**, while still producing **positive and consistent returns over time**. This indicates a strategy that is **largely independent of overall market direction**.
-
-This project should be viewed primarily as a **proof of concept and validation of a trading hypothesis**, as well as a demonstration of trading infrastructure, system design, and risk-aware execution logic — not as a production-ready or profit-maximizing trading system.
+### TL;DR
+A conservative, risk-aware **market-making** trading system written in Python.  
+The strategy is deliberately **non-aggressive**: it does not chase price moves, reduces fees and execution costs, limits directional exposure, and remains relatively passive compared to common industry approaches — while still achieving consistent profitability.
 
 ---
 
-## Results
+## Overview
 
-The following results were produced by running the strategy on **OKX**, trading a **single BTC-USDT market**.
+This repository contains a **demonstration / proof‑of‑concept project** showcasing the design and implementation of a conservative algorithmic trading system.
+
+The system was run on the **OKX exchange**, trading a **single BTC‑USDT market**, with the explicit goal of **risk reduction and stability** rather than maximizing directional exposure or outperforming the underlying asset.
+
+The project focuses on **engineering judgment** in trading systems: how execution constraints, throttling, and position sizing materially affect risk and behavior in real market conditions.
+
+---
+
+## The Problem
+
+Many algorithmic trading systems implicitly rely on **market-taking behavior**: chasing price movements, reacting aggressively to momentum, and paying higher fees in exchange for immediacy.
+
+While effective in certain regimes, these approaches typically:
+- increase transaction costs and fees,
+- amplify exposure to short-term price fluctuations,
+- raise execution and adverse selection risk,
+- tightly couple performance to market direction.
+
+This project explores an alternative approach: a **passive, market-making execution model** that deliberately avoids chasing the market, reduces costs, and limits exposure — aiming for steady profitability through discipline rather than aggressiveness.
+
+---
+
+## Strategy Characteristics
+
+Key properties of the implemented approach:
+
+- Operates primarily as a **market maker**, not a market taker
+- Does **not chase price movements** or momentum extremes
+- Conservative position sizing with strict exposure limits
+- Reduced fees and transaction costs through passive order placement
+- Explicit throttling during extreme momentum and unstable conditions
+- Execution-first design (prioritizes risk reduction over opportunity capture)
+- Intentionally avoids large directional bets
+
+Relative to common industry strategies, the system is **significantly more passive**, trading less frequently and accepting lower market participation in exchange for reduced risk and volatility — while still maintaining attractive profitability.
+
+---
+
+## Results Summary
+
+The system was run continuously and evaluated over a **six-month period**, using real market data from the OKX exchange. Over this timeframe, the strategy demonstrated **stable and promising results**, validating the core design assumptions around passive execution, reduced exposure, and disciplined risk management.
+
+## Results Summary
+
+The system was evaluated on real market data from OKX.
+
+Key observations:
+- Strategy volatility is **significantly lower** than BTC price volatility
+- Drawdowns are limited and controlled
+- Profitability is driven by **execution discipline**, not directional exposure
 
 ### Cumulative PnL (%) vs BTC
 
 ![Cumulative PnL % vs BTC](assets/cumulative_pnl_percent_vs_btc.png)
 
-This chart compares the strategy’s cumulative return to the BTC price movement over the same period. The strategy delivers positive absolute returns with **significantly lower volatility than BTC itself**. During strong directional market moves, the strategy intentionally underperforms the benchmark, reflecting its conservative, risk-aware design rather than directional exposure.
+The strategy delivers positive absolute returns with materially lower variance than BTC itself. During strong directional moves, it intentionally underperforms the benchmark, reflecting its conservative design.
 
 ### Cumulative PnL (USD)
 
 ![Cumulative PnL (USD)](assets/cumulative_pnl_usd.png)
 
-The cumulative PnL curve in USD shows **steady, incremental profit generation with relatively low variance**, punctuated by limited drawdowns. This behavior supports the thesis that the strategy’s performance is **largely independent of overall market direction**.
-
-Overall, these results serve as a **proof of concept**, validating the hypothesis that a conservative execution and momentum-filtered approach can reduce risk while maintaining consistent profitability.
+The cumulative PnL curve shows steady, incremental profit generation with limited drawdowns, supporting the hypothesis of reduced market‑direction dependency.
 
 ---
 
 ## Architecture
+
+The system is structured around a single trading loop with clear separation of concerns between strategy logic, execution, state management, and external exchange interaction.
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
@@ -86,6 +124,30 @@ Overall, these results serve as a **proof of concept**, validating the hypothesi
     └───────────────┘
 ```
 
+---
+
+## What This Project Is NOT
+
+- Not a production‑ready trading bot
+- Not an optimized or profit‑maximizing strategy
+- Not a multi‑asset or high‑frequency system
+
+The emphasis is on **risk‑aware system design and execution discipline**, not financial performance claims.
+
+---
+
+## Intended Audience
+
+This project is intended for:
+- Engineers evaluating system design and execution trade‑offs
+- Technical interview discussions
+- Demonstration of disciplined decision‑making under uncertainty
+
+It should be read as a **systems engineering exercise**, not an investment product.
+
+---
+
 ## Disclaimer
 
-This is an educational and demonstration project only. Use at your own risk. Cryptocurrency trading involves significant risk of loss.
+This project is for educational and demonstration purposes only. Cryptocurrency trading involves significant risk of loss. Use at your own risk.
+
