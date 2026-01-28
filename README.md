@@ -61,6 +61,8 @@ Key observations:
 
 ### Cumulative PnL (%) vs BTC
 
+The graphs illustrate how this design behaves under historical data for engineering insight, not to claim competitive edge or investment value. It is a systems engineering demonstration, not a production or investment strategy.
+
 ![Cumulative PnL % vs BTC](assets/cumulative_pnl_percent_vs_btc.png)
 
 The strategy delivers positive absolute returns with materially lower variance than BTC itself. During strong directional moves, it intentionally underperforms the benchmark, reflecting its conservative design.
