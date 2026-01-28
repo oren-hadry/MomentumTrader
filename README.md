@@ -59,9 +59,9 @@ Key observations:
 - Drawdowns are limited and controlled
 - Profitability is driven by **execution discipline**, not directional exposure
 
-### Cumulative PnL (%) vs BTC
-
 The graphs illustrate how this design behaves under historical data for engineering insight, not to claim competitive edge or investment value. It is a systems engineering demonstration, not a production or investment strategy.
+
+### Cumulative PnL (%) vs BTC
 
 ![Cumulative PnL % vs BTC](assets/cumulative_pnl_percent_vs_btc.png)
 
